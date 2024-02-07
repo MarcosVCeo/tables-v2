@@ -1,0 +1,80 @@
+:root {
+    --font: 'Nunito', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #332c6a;
+}
+
+body {
+    background-image: url(images/wallpaper.jpg);
+    background-size: cover;
+    background-position: center;
+    background-color: #7f7fe3;
+}
+
+.main-vertical-layout {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.nav-bar {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    justify-content: start;
+    align-items: center;
+}
+
+.area-nav-bar{
+    align-items: baseline;
+}
+
+h1 {
+    font-family: var(--font);
+}
+
+h2 {
+    font-family: var(--font);
+}
+
+.logo {
+    width: 5.2rem;
+    height: 4.8rem;
+    margin-right: 0.4rem;
+}
+
+.main-title {
+    display: flex;
+    color: white;
+    margin-left: 0.2rem;
+    align-items: baseline;
+}
+
+.main-title:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.main-logo-title:hover {
+    display: flex;
+    text-decoration: none;
+}
+
+.sub-title-nav {
+    color: white;
+    margin: 0.4rem;
+}
+
+.sub-title-nav:hover {
+    color: red;
+    text-decoration: none;
+}
