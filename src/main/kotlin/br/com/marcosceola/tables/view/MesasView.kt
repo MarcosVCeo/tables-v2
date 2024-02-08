@@ -5,10 +5,11 @@ import br.com.marcosceola.tables.model.Mesa
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import jakarta.annotation.security.PermitAll
+import jakarta.servlet.http.HttpServletRequest
 
 @Route("/tables")
 @PermitAll
-class MesasView : MainView() {
+class MesasView(private val request: HttpServletRequest) : MainView(request) {
 
     private val mesas = mutableListOf<Mesa>()
 

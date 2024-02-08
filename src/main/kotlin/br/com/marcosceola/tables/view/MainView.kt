@@ -1,6 +1,7 @@
 package br.com.marcosceola.tables.view
 
 import com.vaadin.flow.component.Component
+import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.CssImport
 import com.vaadin.flow.component.html.H1
 import com.vaadin.flow.component.html.H2
@@ -9,9 +10,14 @@ import com.vaadin.flow.component.html.Nav
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.RouterLink
+import jakarta.servlet.http.HttpServletRequest
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetails
 
 @CssImport("./styles.css")
-open abstract class MainView : VerticalLayout() {
+open abstract class MainView(
+    private val request: HttpServletRequest
+) : VerticalLayout() {
 
     private val nav: Nav
     private val imagemLogo: Image
@@ -19,6 +25,7 @@ open abstract class MainView : VerticalLayout() {
     private val routerLinkTituloPrincipal: RouterLink
     private val subTituloMesas: H2
     private val routerLinkSubTituloMesas: RouterLink
+    private val logoutButton: Button
 
     init {
         this.addClassName("main-vertical-layout")
@@ -28,8 +35,9 @@ open abstract class MainView : VerticalLayout() {
         routerLinkTituloPrincipal = criarRouterLinkMainTitle(mainTitleTables)
         subTituloMesas = criarTablesSubTitle()
         routerLinkSubTituloMesas = criarRouterLinkTablesSubTitle(subTituloMesas)
+        logoutButton = criarLogoutButton()
 
-        val areaNavBar = HorizontalLayout(routerLinkTituloPrincipal, routerLinkSubTituloMesas)
+        val areaNavBar = HorizontalLayout(routerLinkTituloPrincipal, routerLinkSubTituloMesas, logoutButton)
         areaNavBar.addClassName("area-nav-bar")
 
         nav = criarNavBar(imagemLogo, areaNavBar)
@@ -80,5 +88,19 @@ open abstract class MainView : VerticalLayout() {
         routerLink.add(tablesSubTitle)
 
         return routerLink
+    }
+
+    private fun criarLogoutButton(): Button {
+        val button = Button("Logout")
+        val autenticacao = SecurityContextHolder.getContext().authentication
+        val estaAutenticado = autenticacao != null &&
+                autenticacao.isAuthenticated &&
+                autenticacao.principal is UserDetails
+
+        button.isVisible = estaAutenticado
+
+        button.addClickListener { event -> request.session!!.invalidate() }
+
+        return button
     }
 }

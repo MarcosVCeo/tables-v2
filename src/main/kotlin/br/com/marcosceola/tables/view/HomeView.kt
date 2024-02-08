@@ -2,12 +2,10 @@ package br.com.marcosceola.tables.view
 
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
-import jakarta.annotation.security.PermitAll
+import com.vaadin.flow.server.auth.AnonymousAllowed
+import jakarta.servlet.http.HttpServletRequest
 
 @Route("")
 @PageTitle("Home")
-@PermitAll
-class HomeView : MainView() {
-
-
-}
+@AnonymousAllowed
+class HomeView(private val request: HttpServletRequest) : MainView(request)
