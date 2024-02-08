@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.userdetails.User
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
 
@@ -20,11 +22,14 @@ class SecurityConfig : VaadinWebSecurity() {
     }
 
     @Bean
-    fun userDetailsManager(): UserDetailsManager = InMemoryUserDetailsManager(
+    fun userDetailsManagerBean(): UserDetailsManager = InMemoryUserDetailsManager(
         User
             .withUsername("admin")
-            .password("123")
+            .password("\$2a\$10\$utX3XRviLbJwnNeX0CgTd.eSsQFQSpCq3B4XkhXCnhZDujEAKuzUa")
             .roles("ADMIN")
             .build()
     )
+
+    @Bean
+    fun encoderBean(): PasswordEncoder = BCryptPasswordEncoder()
 }
