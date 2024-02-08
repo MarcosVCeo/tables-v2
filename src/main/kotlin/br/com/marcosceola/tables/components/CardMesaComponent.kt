@@ -1,5 +1,6 @@
 package br.com.marcosceola.tables.components
 
+import br.com.marcosceola.tables.model.Mesa
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.dependency.CssImport
@@ -10,7 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 
 @CssImport(value = "card_mesa_component_style.css")
-class CardMesaComponent(table: br.com.marcosceola.tables.model.Table) : VerticalLayout() {
+class CardMesaComponent(mesa: Mesa) : VerticalLayout() {
 
     private val imagem: Image
     private val titulo: H2
@@ -22,9 +23,9 @@ class CardMesaComponent(table: br.com.marcosceola.tables.model.Table) : Vertical
     init {
         this.addClassName("card-mesa")
 
-        titulo = criarTitulo(table.name)
-        imagem = criarImagem(table.imageLink)
-        descricao = criarDescricao(table.description)
+        titulo = criarTitulo(mesa.nome)
+        imagem = criarImagem(mesa.linkImagem)
+        descricao = criarDescricao(mesa.descricao)
         compartilharButton = criarBotaoCompartilhar()
         vejaMaisButton = criarBotaoVejaMais()
         areaHorizontalTituloBotoes = criarAreaHorizontalTituloBotoes()

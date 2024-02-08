@@ -8,7 +8,6 @@ import com.vaadin.flow.component.html.Image
 import com.vaadin.flow.component.html.Nav
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
-import com.vaadin.flow.dom.Style
 import com.vaadin.flow.router.RouterLink
 
 @CssImport("./styles.css")
@@ -76,7 +75,7 @@ open abstract class MainView : VerticalLayout() {
     }
 
     private fun criarRouterLinkTablesSubTitle(tablesSubTitle: H2): RouterLink {
-        val routerLink = RouterLink(TablesView::class.java)
+        val routerLink = RouterLink(MesasView::class.java)
         routerLink.addClassName("sub-title-nav")
         routerLink.add(tablesSubTitle)
 
