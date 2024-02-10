@@ -68,10 +68,10 @@ abstract class MainView(private val request: HttpServletRequest) : VerticalLayou
     }
 
     private fun criarRouterLinkLogo(): RouterLink {
-        RouterLink(HomeView::class.java)
-        logoRouterLink.add(imagemLogo)
+        val routerLink = RouterLink(HomeView::class.java)
+        routerLink.add(imagemLogo)
 
-        return logoRouterLink
+        return routerLink
     }
 
     private fun criarRouterLinkMainTitle(mainTitle: H1): RouterLink {
