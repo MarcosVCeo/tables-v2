@@ -34,7 +34,7 @@ body {
     align-items: center;
 }
 
-.area-nav-bar{
+.area-nav-bar {
     align-items: baseline;
     width: 100%;
     justify-content: space-between;
@@ -57,7 +57,7 @@ h2 {
 }
 
 .logo:hover {
-    background-color: rgba(0, 0, 0, 0.2) ;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .main-title {
@@ -80,4 +80,11 @@ h2 {
 .sub-title-nav:hover {
     color: red;
     text-decoration: none;
+}
+
+.botao-logout {
+    background-color: #c74648;
+    border-color: white;
+    color: white;
+    border: 0.2rem;
 }

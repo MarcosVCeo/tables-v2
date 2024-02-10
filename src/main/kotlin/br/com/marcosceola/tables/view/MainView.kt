@@ -46,7 +46,7 @@ abstract class MainView(private val request: HttpServletRequest) : VerticalLayou
     }
 
     private fun criarMainTitle(): H1 {
-        val h1 = H1("Tables")
+        val h1 = H1("Home")
         h1.addClassName("main-title")
 
         return h1
@@ -99,6 +99,8 @@ abstract class MainView(private val request: HttpServletRequest) : VerticalLayou
 
     private fun criarLogoutButton(): Button {
         val button = Button("Logout")
+        button.addClassName("botao-logout")
+        
         val autenticacao = SecurityContextHolder.getContext().authentication
         val estaAutenticado = autenticacao != null &&
                 autenticacao.isAuthenticated &&
