@@ -15,12 +15,11 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 
 @CssImport("./styles.css")
-open abstract class MainView(
-    private val request: HttpServletRequest
-) : VerticalLayout() {
+abstract class MainView(private val request: HttpServletRequest) : VerticalLayout() {
 
     private val nav: Nav
     private val imagemLogo: Image
+    private val logoRouterLink: RouterLink
     private val mainTitleTables: H1
     private val routerLinkTituloPrincipal: RouterLink
     private val subTituloMesas: H2
@@ -32,15 +31,16 @@ open abstract class MainView(
 
         mainTitleTables = criarMainTitle()
         imagemLogo = criarImagemLogo()
+        logoRouterLink = criarRouterLinkLogo()
         routerLinkTituloPrincipal = criarRouterLinkMainTitle(mainTitleTables)
         subTituloMesas = criarTablesSubTitle()
         routerLinkSubTituloMesas = criarRouterLinkTablesSubTitle(subTituloMesas)
         logoutButton = criarLogoutButton()
 
-        val areaNavBar = HorizontalLayout(routerLinkTituloPrincipal, routerLinkSubTituloMesas, logoutButton)
+        val areaNavBar = HorizontalLayout(HorizontalLayout(routerLinkTituloPrincipal, routerLinkSubTituloMesas), logoutButton)
         areaNavBar.addClassName("area-nav-bar")
 
-        nav = criarNavBar(imagemLogo, areaNavBar)
+        nav = criarNavBar(logoRouterLink, areaNavBar)
 
         add(nav)
     }
@@ -67,10 +67,17 @@ open abstract class MainView(
         return image
     }
 
+    private fun criarRouterLinkLogo(): RouterLink {
+        RouterLink(HomeView::class.java)
+        logoRouterLink.add(imagemLogo)
+
+        return logoRouterLink
+    }
+
     private fun criarRouterLinkMainTitle(mainTitle: H1): RouterLink {
         val routerLink = RouterLink(HomeView::class.java)
         routerLink.setClassName("main-title")
-        routerLink.add(imagemLogo, mainTitle)
+        routerLink.add(mainTitle)
 
         return routerLink
     }

@@ -36,6 +36,8 @@ body {
 
 .area-nav-bar{
     align-items: baseline;
+    width: 100%;
+    justify-content: space-between;
 }
 
 h1 {
@@ -50,6 +52,12 @@ h2 {
     width: 5.2rem;
     height: 4.8rem;
     margin-right: 0.4rem;
+    border-radius: 1rem;
+    padding: 0.2rem;
+}
+
+.logo:hover {
+    background-color: rgba(0, 0, 0, 0.2) ;
 }
 
 .main-title {
@@ -61,11 +69,6 @@ h2 {
 
 .main-title:hover {
     color: red;
-    text-decoration: none;
-}
-
-.main-logo-title:hover {
-    display: flex;
     text-decoration: none;
 }
 
