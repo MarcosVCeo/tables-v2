@@ -1,5 +1,6 @@
 package br.com.marcosceola.tables.view
 
+import com.vaadin.flow.component.dependency.CssImport
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
 import com.vaadin.flow.component.orderedlayout.FlexComponent
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest
 
 @PageTitle("Login")
 @Route("login")
+@CssImport("./login_style.css")
 @AnonymousAllowed
 class LoginView(
     private val request: HttpServletRequest
@@ -21,8 +23,8 @@ class LoginView(
 
     init {
         this.alignItems = FlexComponent.Alignment.CENTER
-        this.justifyContentMode
         loginForm = LoginForm(criarLoginI18()).apply { action = "login" }
+        loginForm.addClassName("login-form")
 
         add(loginForm)
     }
@@ -37,7 +39,7 @@ class LoginView(
         errorMessage.title = "Usuário ou senha inválidos"
         errorMessage.message = "Verifique se o usuário e a senha informados estão corretos"
         errorMessage.username = "Usuário obrigatório"
-        errorMessage.password = "Senha obrigatório"
+        errorMessage.password = "Senha obrigatória"
     }
 
     override fun beforeEnter(event: BeforeEnterEvent) {
