@@ -32,3 +32,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.flow/
+src/main/bundles
+node_modules/
+frontend/generated/
+pnpmfile.js
+.npmrc
+webpack.generated.js
+vite.generated.ts
