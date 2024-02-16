@@ -1,21 +1,21 @@
 package br.com.marcosceola.tables.config
 
+import br.com.marcosceola.tables.service.UsuarioService
 import br.com.marcosceola.tables.view.LoginView
 import com.vaadin.flow.spring.security.VaadinWebSecurity
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.provisioning.InMemoryUserDetailsManager
-import org.springframework.security.provisioning.UserDetailsManager
 
 @EnableWebSecurity
 @Configuration
-class SecurityConfig : VaadinWebSecurity() {
+class SecurityConfig(@Autowired val usuarioService: UsuarioService) : VaadinWebSecurity() {
 
     override fun configure(http: HttpSecurity?) {
         super.configure(http)
@@ -27,14 +27,10 @@ class SecurityConfig : VaadinWebSecurity() {
     }
 
     @Bean
-    fun userDetailsManagerBean(): UserDetailsManager = InMemoryUserDetailsManager(
-        User
-            .withUsername("admin")
-            .password("\$2a\$10\$utX3XRviLbJwnNeX0CgTd.eSsQFQSpCq3B4XkhXCnhZDujEAKuzUa")
-            .roles("ADMIN")
-            .build()
-    )
+    fun authenticationProvider(): DaoAuthenticationProvider = DaoAuthenticationProvider(encoder()).apply {
+        setUserDetailsService(usuarioService)
+    }
 
     @Bean
-    fun encoderBean(): PasswordEncoder = BCryptPasswordEncoder()
+    fun encoder(): PasswordEncoder = BCryptPasswordEncoder()
 }

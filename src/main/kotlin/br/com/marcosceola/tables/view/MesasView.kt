@@ -3,11 +3,13 @@ package br.com.marcosceola.tables.view
 import br.com.marcosceola.tables.components.CardMesaComponent
 import br.com.marcosceola.tables.model.Mesa
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import jakarta.annotation.security.PermitAll
 import jakarta.servlet.http.HttpServletRequest
 
 @Route("/tables")
+@PageTitle("Tables | Mesas")
 @PermitAll
 class MesasView(private val request: HttpServletRequest) : MainView(request) {
 
